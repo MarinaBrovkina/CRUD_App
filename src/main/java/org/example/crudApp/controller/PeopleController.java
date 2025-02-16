@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
+
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
@@ -24,7 +26,7 @@ public class PeopleController {
 // от контроллера к представлению. В представление можно передавать
 // объекты, списки, строки и другие данные, которые будут отображены на веб-странице.
     @GetMapping
-    public String index(Model model) {
+    public String index(Model model) throws SQLException {
         model.addAttribute("people", personDAO.index());
         return "people/index";
     }
