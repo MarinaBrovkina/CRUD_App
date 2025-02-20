@@ -22,9 +22,6 @@ public class PeopleController {
         this.personDAO = personDAO;
     }
 
-    // Model - это интерфейс Spring MVC, который позволяет передавать данные
-// от контроллера к представлению. В представление можно передавать
-// объекты, списки, строки и другие данные, которые будут отображены на веб-странице.
     @GetMapping
     public String index(Model model) throws SQLException {
         model.addAttribute("people", personDAO.index());
@@ -42,10 +39,6 @@ public class PeopleController {
         return "people/new";
     }
 
-    //BindingResult bindingResult - это интерфейс в Spring Framework,
-    // который содержит результаты валидации объекта.
-    // Он используется для получения информации об ошибках, возникших при попытке
-    // связать данные из запроса (например, из HTML-формы) с полями объекта.
     @PostMapping()
     public String create(@ModelAttribute("person") @Valid Person person,
                          BindingResult bindingResult) {
@@ -62,12 +55,6 @@ public class PeopleController {
         return "people/edit";
     }
 
-    // @PatchMapping: аннотация, указывающая, что этот метод будет обрабатывать
-    // HTTP-запросы, использующие метод PATCH
-    // @ModelAttribute("person"): аннотация указывает,
-    // что объект Person будет создан из данных, отправленных в запросе.
-    // @PathVariable("id"): Эта аннотация извлекает значение из URI-шаблона (/{id})
-    // и связывает его с параметром id метода.
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult,
                          @PathVariable("id") int id) {

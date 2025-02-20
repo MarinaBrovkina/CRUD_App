@@ -6,8 +6,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -31,7 +29,7 @@ public class PersonDAO {
     }
 
     public void save(Person person) {
-        jdbcTemplate.update("INSERT INTO Person VALUES(1, ?, ?, ?)", person.getName(), person.getAge(),
+        jdbcTemplate.update("INSERT INTO Person(name, age, email) VALUES(?, ?, ?)", person.getName(), person.getAge(),
                 person.getEmail());
     }
 
@@ -46,24 +44,6 @@ public class PersonDAO {
 }
 
 // Использую JDBC API
-//private static final String URL = "jdbc:postgresql://localhost:5432/first_db";
-    //    private static final String USERNAME = "postgres";
-//    private static final String PASSWORD = "1234";
-//    private static Connection connection;
-//
-//    static {
-//        try {
-//            Class.forName("org.postgresql.Driver");
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//
-//        try {
-//            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//        }
-//    }
 //    public List<Person> index() {
 //        List<Person> people = new ArrayList<>();
 //        try {
@@ -115,7 +95,7 @@ public class PersonDAO {
 //    public void save(Person person) {
 //        try {
 //            PreparedStatement preparedStatement =
-//                    connection.prepareStatement("INSERT INTO Person VALUES(1, ?, ?, ?)");
+//                    connection.prepareStatement("INSERT INTO Person(name, age, email) VALUES(?, ?, ?)");
 //
 //            preparedStatement.setString(1, person.getName());
 //            preparedStatement.setInt(2, person.getAge());
