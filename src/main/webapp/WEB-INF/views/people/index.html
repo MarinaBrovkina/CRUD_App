@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
-    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
     <title>All people</title>
 </head>
 
@@ -10,7 +10,7 @@
 
 <div th:each="person : ${people}">
     <a th:href="@{/people/{id}(id=${person.getId()})}"
-       th:text="${person.getName() + ', ' + person.getAge()}">user</a>
+       th:text="${person.getName() + ', ' + person.getAge() + ', ' + person.getAddress()}">user</a>
 </div>
 
 <br/>
